@@ -2,8 +2,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id ("com.google.secrets_gradle_plugin") version "0.4"
+    // Add the dependency for the Google services Gradle plugin
+    id("com.google.gms.google-services") version "4.4.2" apply false
+
 }
-val API_KEY = ""
+
 android {
     namespace = "com.example.gembot"
     compileSdk = 34
@@ -14,7 +17,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "API_KEY", "\"${API_KEY}\"")
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -59,6 +62,10 @@ dependencies {
     implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
     // .env file
     implementation ("io.github.cdimascio:java-dotenv:5.2.2")
+
+    // FIrebase BOM
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation("com.google.firebase:firebase-analytics")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
